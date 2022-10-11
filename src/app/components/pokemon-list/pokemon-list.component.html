@@ -1,0 +1,42 @@
+
+
+<div class="flex min-h-screen bg-gray-900">
+    <div class="col-span-12">
+        <div class="overflow-auto lg:overflow-visible ">
+            <table class="table text-gray-400 border-separate space-y-6 text-sm" (click)="inner()">
+                <thead class="bg-gray-800 text-gray-500">
+                    <tr>
+                        <th class="p-3">No</th>
+                        <th class="p-3" >Name</th>
+                        <!-- <th class="p-3 text-left">Status</th> -->
+                        <th class="p-3 text-left">Action</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr *ngFor="let pokemon of pokemonList; index as i" class="bg-gray-800">
+                        <td class="p-3">
+                            <span class="">{{i}}</span>
+                        </td>
+                        <td class="p-3" >
+                            <div class="flex align-items-center">
+                                <div class="ml-3" (click)="selectPokemon(pokemon.name)">
+                                    <div class="banana" >{{pokemon.name | titlecase }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- <td class="p-3">
+                            <span class="bg-green-400 text-gray-50 rounded-md px-2">Favorite</span>
+                        </td> -->
+                        <td class="p-3 ">
+                            <button (click)="addToFavorite(pokemon)">Add to favorite</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="right-side">
+        <app-selected-pokemon [selectedPokemon]="pokemon"></app-selected-pokemon>
+        </div>
+</div>
+

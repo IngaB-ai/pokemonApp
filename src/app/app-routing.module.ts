@@ -7,7 +7,7 @@ import { AppDisplaySettingsComponent } from './components/app-display-settings/a
 const routes: Routes = [
   /*todo exact match, maybe lazy loading
   */
-  { path: '', component: PokemonListComponent },
+  { path: 'dashboard', component: PokemonListComponent },
   { path: 'settings', component: AppDisplaySettingsComponent },
   { path: '**', component: PokemonListComponent }
 ];

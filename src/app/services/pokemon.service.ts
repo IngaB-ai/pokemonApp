@@ -17,9 +17,19 @@ export class PokemonService {
 
 
     getPokemons(): Observable<IPokemon> {
-        console.log("string", environment.openSourceUrl)
         return this.http.get<IPokemon>(environment.openSourceUrl)
     }
+
+   
+        getType(name: string): Observable<any> {
+            const url = `${environment.openSourceUrl}${name}`;
+            return this.http.get<any>(url);
+          }
+
+          getAbbilityDescription(url:string):Observable<any> {
+            return this.http.get<any>(url);
+          }
+   
 
 }
 

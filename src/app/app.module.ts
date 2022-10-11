@@ -6,12 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { AppDisplaySettingsComponent } from './components/app-display-settings/app-display-settings.component';
+import { SelectedPokemonComponent } from './components/selected-pokemon/selected-pokemon.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonListComponent,
-    AppDisplaySettingsComponent
+    AppDisplaySettingsComponent,
+    SelectedPokemonComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
