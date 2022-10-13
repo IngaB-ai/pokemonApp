@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
 import { IPokemonResults } from '../../services/model/pokemon-model';
 import { Subscription } from 'rxjs';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -18,51 +19,53 @@ export class PokemonListComponent implements OnInit {
   pokemonListData$: Subscription = Subscription.EMPTY;
   selectPokemon$: Subscription = Subscription.EMPTY;
 
-
-
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getPokemonList();
+
+    this.router.events.subscribe(
+      (event) => {
+        if (event instanceof NavigationStart) {
+
+          if (event.url !== "/dashboard") {
+            // permanent pokemons list getting updated in local storage when route is changed
+            localStorage['pokemons'] = JSON.stringify(this.pokemonList)
+            // on route change the component is not getting destroyed
+            //https://blog.devgenius.io/where-ngondestroy-fails-you-54a8c2eca0e0
+            this.pokemonListData$.unsubscribe();
+            this.selectPokemon$.unsubscribe();
+          }
+        }
+      });
+
+    if (this.pokemonList === undefined || this.pokemonList.length == 0) {
+      this.getPokemonList();
+    }
     this.selectPokemon("bulbasaur")
 
   }
 
   getPokemonList() {
     this.pokemonListData$ = this.pokemonService.getPokemons().subscribe(data => {
-      console.log(data)
       this.pokemonList = data.results;
-      console.log(this.pokemonList)
     });
     this.loading = false;
   }
 
-  //todo -ChangeDetectionStrategy
-
   addToFavorite(pokemon: any) {
-    console.log("pressed", pokemon)
-    this.favoriteList.push(pokemon)
-
+    pokemon.favorite = !pokemon.favorite;
   }
 
   selectPokemon(name: any) {
-    console.log("outter", name)
-    console.log("56", this.pokemonService.getType(name))
     this.selectPokemon$ = this.pokemonService.getType(name).subscribe((data: any) => {
-      console.log("hmmmm", data)
       this.pokemon = data
     })
 
   }
 
-  inner() {
-    console.log("outter component")
-  }
-
-  onDestroy() {
-    this.pokemonListData$.unsubscribe();
-    this.selectPokemon$.unsubscribe();
-  }
-
+  // onDestroy() {
+  //   this.pokemonListData$.unsubscribe();
+  //   this.selectPokemon$.unsubscribe();
+  // }
 
 }

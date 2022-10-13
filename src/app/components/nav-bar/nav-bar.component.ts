@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class NavBarComponent implements OnInit {
 
   constructor() { }
-
+//way to cmake dark light themes without tailwind:
+// https://blog.angulartraining.com/how-to-implement-a-dark-theme-with-css-and-angular-2cfd98b9455d
   ngOnInit(): void {
   }
 

@@ -1,42 +1,66 @@
+<div class="flex min-h-screen dark:bg-gray-900 bg-white">
+    <div class="left-side">
+        <div class="pagination-container">
+            <ul class="flex list-style-none">
+                <li class="page-item"><a
+                        class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 focus:shadow-none"
+                        href="#">Previous</a></li>
+                <li *ngIf="pokemonList.length>20" class="page-item"><a
+                        class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                        href="#">1</a></li>
+                <li *ngIf="pokemonList.length>40" class="page-item"><a
+                        class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                        href="#">2</a></li>
+                <li *ngIf="pokemonList.length>60" class="page-item"><a
+                        class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                        href="#">3</a></li>
+                <li class="page-item"><a
+                        class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                        href="#">Next</a></li>
+            </ul>
+        </div>
+        <div class="col-span-12">
+            <div class="overflow-auto lg:overflow-visible ">
+                <table class="table text-gray-400 border-separate space-y-6 text-sm">
+                    <thead class="dark:bg-gray-800  bg-slate-50 text-gray-500">
+                        <tr>
+                            <th class="p-3">No</th>
+                            <th class="p-3">Name</th>
+                            <th class="p-3 text-left">Status</th>
+                            <th class="p-3 text-left">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let pokemon of pokemonList; index as i ">
+                        <!-- <tbody *ngFor="let pokemon of pokemonList| slice:0:20; index as i " > -->
+                        <tr class="dark:bg-gray-800 bg-slate-50">
+                            <td class="p-3">
+                                <span class="">{{i+1}}</span>
+                            </td>
+                            <td class="p-3">
+                                <div class="flex align-items-center">
+                                    <div class="ml-3" (click)="selectPokemon(pokemon.name)">
+                                        <div class="banana">{{pokemon.name | titlecase }}</div>
+                                    </div>
 
-
-<div class="flex min-h-screen bg-gray-900">
-    <div class="col-span-12">
-        <div class="overflow-auto lg:overflow-visible ">
-            <table class="table text-gray-400 border-separate space-y-6 text-sm" (click)="inner()">
-                <thead class="bg-gray-800 text-gray-500">
-                    <tr>
-                        <th class="p-3">No</th>
-                        <th class="p-3" >Name</th>
-                        <!-- <th class="p-3 text-left">Status</th> -->
-                        <th class="p-3 text-left">Action</th>
-                    </tr>
-                </thead>
-                <tbody >
-                    <tr *ngFor="let pokemon of pokemonList; index as i" class="bg-gray-800">
-                        <td class="p-3">
-                            <span class="">{{i}}</span>
-                        </td>
-                        <td class="p-3" >
-                            <div class="flex align-items-center">
-                                <div class="ml-3" (click)="selectPokemon(pokemon.name)">
-                                    <div class="banana" >{{pokemon.name | titlecase }}</div>
                                 </div>
-                            </div>
-                        </td>
-                        <!-- <td class="p-3">
-                            <span class="bg-green-400 text-gray-50 rounded-md px-2">Favorite</span>
-                        </td> -->
-                        <td class="p-3 ">
-                            <button (click)="addToFavorite(pokemon)">Add to favorite</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                            <td class="p-3">
+                                <span
+                                    [ngClass]="{'bg-green-400': pokemon?.favorite == true, 'bg-red-400':  pokemon?.favorite !== true  }"
+                                    class="text-gray-50 rounded-md px-2">favorite</span>
+                            </td>
+                            <td class="p-3">
+                                <button (click)="addToFavorite(pokemon)">Add to favorite</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="right-side">
         <app-selected-pokemon [selectedPokemon]="pokemon"></app-selected-pokemon>
-        </div>
-</div>
+    </div>
 
+</div>

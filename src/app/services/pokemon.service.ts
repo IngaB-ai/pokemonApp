@@ -17,19 +17,22 @@ export class PokemonService {
 
 
     getPokemons(): Observable<IPokemon> {
-        return this.http.get<IPokemon>(environment.openSourceUrl)
+        const showAmount = localStorage.getItem("amount")
+        return this.http.get<IPokemon>(`${environment.openSourceUrl}?offset=0&limit=${showAmount}`)
     }
 
-   
-        getType(name: string): Observable<any> {
-            const url = `${environment.openSourceUrl}${name}`;
-            return this.http.get<any>(url);
-          }
 
-          getAbbilityDescription(url:string):Observable<any> {
-            return this.http.get<any>(url);
-          }
-   
+    getType(name: string): Observable<any> {
+        const url = `${environment.openSourceUrl}${name}`;
+        return this.http.get<any>(url);
+    }
+
+    getAbbilityDescription(url: string): Observable<any> {
+        return this.http.get<any>(url);
+    }
+
+
+
 
 }
 

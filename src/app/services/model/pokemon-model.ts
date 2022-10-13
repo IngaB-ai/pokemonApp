@@ -2,6 +2,7 @@
 export interface IPokemonResults {
   name: string,
   url: string
+  favorite? :boolean
 }
 
 export interface IPokemon {

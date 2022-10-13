@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
   selector: 'app-app-display-settings',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppDisplaySettingsComponent implements OnInit {
 
-  constructor() { }
+  //@ts-ignore
+  isDarkMode: boolean;
+  settingsNumber: number = 0;
+
+  constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
+    let temp = localStorage.getItem("amount") || 0;
+    //converting to number
+    this.settingsNumber = +temp;
+
+  }
+
+  changeTheme() {
+    console.log("toggle", !this.isDarkMode);
+    this.isDarkMode = !this.isDarkMode;
+    this.isDarkMode ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')
+    this.isDarkMode ? localStorage['theme'] = 'dark' : localStorage['theme'] = 'light'
+  }
+
+  submit() {
+    localStorage['amount'] = JSON.stringify(this.settingsNumber);
   }
 
 }

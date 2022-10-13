@@ -1,1 +1,25 @@
-<p>app-display-settings works!</p>
+<div class="flex min-h-screen bg-white dark:bg-gray-900">
+
+  {{this.isDarkMode}}
+
+  <label for="toggle" class="cursor-pointer">
+    <div class="relative">
+      <input (click)="changeTheme()" type="checkbox" id="toggle" class="sr-only">
+      <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+      <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+    </div>
+    <div class="ml-3 text-gray-700 font-medium">
+      Toggle theme!
+    </div>
+  </label>
+
+  <div class="flex flex-col">
+    How many pokemons?
+    <input class="border border-gray-500" type="number" min="0" max="800" [(ngModel)]="settingsNumber"
+      oninput="validity.valid||(value='');" />
+    <button
+      class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+      (click)="submit()">Submit</button>
+  </div>
+
+</div>

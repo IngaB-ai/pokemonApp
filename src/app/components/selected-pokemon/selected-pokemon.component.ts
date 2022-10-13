@@ -8,13 +8,16 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class SelectedPokemonComponent implements OnInit {
 
+  @Input() selectedPokemon: any;
+
   //@ts-ignore
   abilityDescription: any = null;
 
-  @Input() selectedPokemon: any;
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
+
+
   }
 
 
