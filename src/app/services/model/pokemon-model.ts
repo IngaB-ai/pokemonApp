@@ -8,7 +8,7 @@ export interface IPokemonResults {
 export interface IPokemon {
   count: number,
   next: string,
-  previous: string,
+  previous: string | null,
   results: IPokemonResults[];
 }
 

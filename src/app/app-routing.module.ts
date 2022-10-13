@@ -9,7 +9,7 @@ const routes: Routes = [
 
   { path: 'dashboard', component: PokemonListComponent },
   { path: 'settings', pathMatch: 'full' ,component: AppDisplaySettingsComponent },
-  // { path: '**', component: PokemonListComponent }
+  { path: '**', component: PokemonListComponent }
 ];
 
 @NgModule({

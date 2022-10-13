@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppDisplaySettingsComponent } from './app-display-settings.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppDisplaySettingsComponent', () => {
   let component: AppDisplaySettingsComponent;
@@ -8,7 +9,8 @@ describe('AppDisplaySettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AppDisplaySettingsComponent ]
+      declarations: [ AppDisplaySettingsComponent ],
+      imports: [HttpClientModule]
     })
     .compileComponents();
 
