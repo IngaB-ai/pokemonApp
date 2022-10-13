@@ -2,7 +2,7 @@
 
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-500 dark:text-white">{{selectedPokemon?.name|
         titlecase}}</h5>
-        
+
     <div class="flex-row flex">
         <div class="flex-col">
             <img #front src={{selectedPokemon?.sprites.front_default}}>
@@ -19,16 +19,17 @@
     </div>
 
     <ul class="list-none mt-4" style="width: 20rem;">
-        <li class="border-b-2  bg-transparent py-2 px-4" (click)="heights()">Height <b
-                class="float-right">{{selectedPokemon?.height}}</b></li>
+        <li class="border-b-2  bg-transparent py-2 px-4">Height <b class="float-right">{{selectedPokemon?.height}}</b>
+        </li>
         <li class="border-b-2  bg-transparent py-2 px-4">Weight <b class="float-right">{{selectedPokemon?.weight}}</b>
         </li>
     </ul>
     <ul class="list-none mt-4">
         Abilities:
         <li *ngFor="let ability of selectedPokemon?.abilities" class="border-b-2 bg-transparent py-2 px-4">
-            <div (click)="showAbilities(ability.ability.url)"> {{ability.ability.name | titlecase}} </div>
+            <div> {{ability.ability.name | titlecase}} </div>
+            <app-abilities-description [dope]="ability.ability.url"></app-abilities-description>
         </li>
-        <!-- <p>{{abilityDescripion?.effect}}</p> -->
+
     </ul>
 </div>

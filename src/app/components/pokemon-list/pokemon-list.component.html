@@ -30,7 +30,7 @@
                             <th class="p-3 text-left">Action</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let pokemon of pokemonList; index as i ">
+                    <tbody *ngFor="let pokemon of pokemonList; index as i; trackBy:key">
                         <!-- <tbody *ngFor="let pokemon of pokemonList| slice:0:20; index as i " > -->
                         <tr class="dark:bg-gray-800 bg-slate-50">
                             <td class="p-3">

@@ -45,6 +45,10 @@ export class PokemonListComponent implements OnInit {
 
   }
 
+  key( index:number){
+    return index
+  }
+
   getPokemonList() {
     this.pokemonListData$ = this.pokemonService.getPokemons().subscribe(data => {
       this.pokemonList = data.results;

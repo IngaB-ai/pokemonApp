@@ -10,8 +10,6 @@ export class SelectedPokemonComponent implements OnInit {
 
   @Input() selectedPokemon: any;
 
-  //@ts-ignore
-  abilityDescription: any = null;
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -20,23 +18,5 @@ export class SelectedPokemonComponent implements OnInit {
 
   }
 
-
-  showAbilities(abilitiesUrl: string) {
-
-    this.pokemonService.getAbbilityDescription(abilitiesUrl).subscribe((data: any) => {
-      console.log(data)
-      this.abilityDescription = data.effect_entries.find((x: any) => x.language.name == "en")
-      console.log(this.abilityDescription)
-
-    })
-  }
-
-  selecttts() {
-    console.log("child outer")
-  }
-
-  heights() {
-    console.log("child inner")
-  }
 
 }

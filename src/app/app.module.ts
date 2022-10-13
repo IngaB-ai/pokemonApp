@@ -9,6 +9,7 @@ import { PokemonListComponent } from './components/pokemon-list/pokemon-list.com
 import { AppDisplaySettingsComponent } from './components/app-display-settings/app-display-settings.component';
 import { SelectedPokemonComponent } from './components/selected-pokemon/selected-pokemon.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { AbilitiesDescriptionComponent } from './components/abilities-description/abilities-description.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     PokemonListComponent,
     AppDisplaySettingsComponent,
     SelectedPokemonComponent,
-    NavBarComponent
+    NavBarComponent,
+    AbilitiesDescriptionComponent
   ],
   imports: [
     BrowserModule,
