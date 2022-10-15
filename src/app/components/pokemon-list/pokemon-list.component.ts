@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
 import { IPokemonResults } from '../../services/model/pokemon-model';
 import { Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ export class PokemonListComponent implements OnInit {
 
   loading = true;
   pokemonList: IPokemonResults[] = [];
+  p: number = 1;
   favoriteList: any[] = [];
   pokemon: any = null;
 
@@ -40,12 +41,13 @@ export class PokemonListComponent implements OnInit {
 
     if (this.pokemonList === undefined || this.pokemonList.length == 0) {
       this.getPokemonList();
+     
     }
     this.selectPokemon("bulbasaur")
 
   }
 
-  key( index:number){
+  key(index: number) {
     return index
   }
 
@@ -54,6 +56,7 @@ export class PokemonListComponent implements OnInit {
       this.pokemonList = data.results;
     });
     this.loading = false;
+    return this.pokemonList;
   }
 
   addToFavorite(pokemon: any) {
@@ -64,7 +67,6 @@ export class PokemonListComponent implements OnInit {
     this.selectPokemon$ = this.pokemonService.getType(name).subscribe((data: any) => {
       this.pokemon = data
     })
-
   }
 
   // onDestroy() {

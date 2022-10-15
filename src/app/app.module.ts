@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
@@ -22,20 +24,22 @@ import { AbilitiesDescriptionComponent } from './components/abilities-descriptio
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
-    HttpClientModule, 
-    FormsModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule, 
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
-  constructor(){
+  constructor() {
     if (localStorage['theme'] === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-  document.documentElement.classList.add('dark')
-} else {
-  console.log("dark removed")
-  document.documentElement.classList.remove('dark')
-}
+      document.documentElement.classList.add('dark')
+    } else {
+      console.log("dark removed")
+      document.documentElement.classList.remove('dark')
+    }
   }
- }
+}
